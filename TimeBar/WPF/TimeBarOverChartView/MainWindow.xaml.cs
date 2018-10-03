@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using Telerik.Windows.Controls;
 
@@ -65,6 +66,18 @@ namespace TimeBarOverChartView
         {
             double verticalAxisWidth = this.chart1.PlotAreaClip.X + this.chart1.PanOffset.X;
             this.timeBar1.Margin = new Thickness(verticalAxisWidth, 0, 0, 0);
+        }
+
+        private void MouseUpHandler(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+             Point mousePosition1 = e.GetPosition(timeBar1);
+             DateTime date1 = timeBar1.ConvertPointToDateTime(mousePosition1);
+
+             Point mousePosition2 = e.GetPosition(chart1);
+             var data2 = chart1.ConvertPointToData(mousePosition2);
+
+             var delta = date1 - (DateTime)data2.FirstValue;
+             Debug.Assert(date1 == (DateTime)data2.FirstValue, $"Different result fro different controls delta between results {delta}");
         }
     }
 }

@@ -20,7 +20,8 @@
         <telerik:RadTimeBar x:Name="timeBar1" 
                             PeriodStart="{Binding HorizontalAxis.ActualRange.Minimum, ElementName=chart1}"
                             PeriodEnd="{Binding HorizontalAxis.ActualRange.Maximum, ElementName=chart1}"
-                            Background="Transparent">
+                            Background="Transparent"
+                            MouseUp="MouseUpHandler">
             <telerik:RadTimeBar.SliderStyle>
                 <Style TargetType="telerik:RadSlider" BasedOn="{StaticResource TimeBar_SliderStyle}">
                     <EventSetter Event="SelectionChanged" Handler="slider_SelectionChanged" />
